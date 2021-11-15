@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Storage;
 
 class RegisterController extends Controller
 {
@@ -65,7 +66,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {        
-        $image_name = $data['photo']->store('uploads', 'public');                                
+        // $image_name = $data['photo']->store('uploads', 'public');
+        $image_name = Storage::disk('oci')->putFile('uploads', $data['photo']);
 
         return User::create([
             'name' => $data['name'],

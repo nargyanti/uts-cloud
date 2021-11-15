@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    <img src="{{ asset('storage/'.$user->photo ) }}" alt="Photo Profile" class="rounded mx-auto d-block mb-3" style="width:200px">   
+                    {{-- <img src="{{ asset('storage/'.$user->photo ) }}" alt="Photo Profile" class="rounded mx-auto d-block mb-3" style="width:200px">    --}}
+                    <img src="{{ Storage::disk('oci')->url($user->photo) }}" alt="Photo Profile" class="rounded mx-auto d-block mb-3" style="width:200px">   
                     <h3 class="text-center">{{ $user->name }}</h3>                 
                     <h4 class="text-center">{{ $user->email }}</h4>
                 </div>
